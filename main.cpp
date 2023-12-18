@@ -168,3 +168,90 @@ bool login()
         }
     } while (count == 5);
 }
+
+void sign_up()
+{
+    cout << "|-----------------------------------------------|" << endl;
+    cout << "                     SIGN-UP                      " << endl;
+    cout << "|-----------------------------------------------|" << endl;
+
+    ofstream usernameFile("username.txt");
+    ofstream passwordFile("password.txt");
+
+    do
+    {
+        cout << "REG NO: ";
+        cin >> usr_n; cout << endl;
+
+        int sz = usr_n.length();
+
+        if (sz > 7)
+        {
+            cout << "Reg no must be of 7 or fewer letters" << endl;
+            cout << "REG NO: ";
+        }
+
+        if (sz <= 7)
+        {
+            ofstream usernameFile("username.txt");
+            usernameFile << usr_n;
+            usernameFile.close();
+            break;
+        }
+    } while (true);
+
+    do
+    {
+        cout << "(Must contain a capital letter and be greater than 8 letters)" << endl;
+        cout << "Choose Your password : ";
+        cin >> pass;
+
+        bool hasUpperCase = false;
+
+        for (int i = 0; i < pass.length(); ++i)
+        {
+            if (isupper(pass[i]))
+            {
+                hasUpperCase = true;
+                break;
+            }
+        }
+
+        if (hasUpperCase && pass.length() > 8)
+        {
+            ofstream passwordFile("password.txt");
+            passwordFile << pass;
+            passwordFile.close();
+            break;
+        }
+        else
+        {
+            cout << "Password must contain a capital letter and be greater than 8 letters" << endl;
+        }
+    } while (true);
+    cout << endl;
+    cout << "|-------------------Sign-up successful!--------------------|" << endl << endl;
+    cout << "|---------------- Now Login to Continue--------------------|" << endl;
+    cout << endl;
+}
+void ticket()
+{
+    cout << "Do you want a window seat: " << endl;
+    cout << "1. Yes" << endl;
+    cout << "2. No" << endl << endl;
+    cin >> window;
+
+    system("CLS");
+
+    cout << "___________" << endl;
+    if (choice == 1)
+    {
+        cout << "| Mr. " << name << endl << "|" << endl;
+    }
+    else
+    {
+        cout << "| Mr. " << name << endl << "|" << endl;
+    }
+    seat_assign();
+    bus_timing();
+}
